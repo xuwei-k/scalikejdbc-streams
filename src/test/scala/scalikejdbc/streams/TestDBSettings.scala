@@ -8,10 +8,14 @@ trait TestDBSettings {
   lazy val dbName = Symbol(this.getClass.getSimpleName)
 
   protected def openDB(): Unit = {
-    val url = s"jdbc:h2:mem:streams_test_${dbName.name};LOG=0;CACHE_SIZE=65536;LOCK_MODE=0;UNDO_LOG=0"
-    val user = "user"
-    val password = "password"
-    val poolSettings = ConnectionPoolSettings(driverName = "org.h2.Driver")
+    val props = new Properties()
+    props.load(getClass.getClassLoader.getResourceAsStream("jdbc.properties"))
+
+    val url = props.getProperty("url").format(dbName.name)
+    val user = props.getProperty("user")
+    val password = props.getProperty("password")
+    val driverClassName = props.getProperty("driverClassName")
+    val poolSettings = ConnectionPoolSettings(driverName = driverClassName)
     Class.forName(poolSettings.driverName)
     ConnectionPool.add(dbName, url, user, password, poolSettings)
   }

@@ -34,6 +34,10 @@ libraryDependencies ++= Seq(
   "org.scalikejdbc" %% "scalikejdbc" % scalikeJdbcVersion,
   "ch.qos.logback" % "logback-classic" % "1.1.7" % "test",
   "com.h2database" % "h2" % "1.4.193" % "test",
+  "mysql" % "mysql-connector-java" % "5.1.40" % "test",
+  "org.apache.derby" % "derby" % "10.13.1.1" % "test",
+  "org.hsqldb" % "hsqldb" % "2.3.4" % "test",
+  "org.postgresql" % "postgresql" % "9.4.1212" % "test",
   "org.scalatest" %% "scalatest" % "3.0.1" % "test",
   "org.reactivestreams" % "reactive-streams-tck" % reactiveStreamsVersion % "test"
 )
